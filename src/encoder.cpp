@@ -31,16 +31,11 @@ inline std::ostream& operator<< (std::ostream& stream, const std::vector<unsigne
 
 int main(int argc, char* argv[])
 {
-    // parse command line options:
-    // - SI url
-    // - ensemble <ecc>.<eid>
-    // - desired logo encode sizes
     vector<unsigned char> bytes;
     for(string line; getline(cin, line);) {
         vector<unsigned char> v(line.begin(), line.end());
         bytes.insert(bytes.end(), v.begin(), v.end());
     }
-    //cout << "downloaded SI: " << bytes.size() << endl;
 
     // unmarshall the SI
     //cout << "unmarshalling SI document" << endl;
@@ -49,7 +44,7 @@ int main(int argc, char* argv[])
 
     // marshall the binary
     //cout << "marshalling to binary" << endl;
-    Ensemble ensemble(0xe1, 0xc181);
+    Ensemble ensemble(0xe1, 0xc1c8);
     BinaryMarshaller binary(ensemble);
     vector<unsigned char> encoded = binary.Marshall(info);
 
@@ -70,7 +65,7 @@ int main(int argc, char* argv[])
     
     // add SI object
     MotObject si_object(id.Next(), "SI.xml", encoded, hybridspi::ContentTypes::ServiceInformation);
-    si_object.AddParameter(new ScopeId(0xe1, 0xc181));
+    si_object.AddParameter(new ScopeId(0xe1, 0xc1c8));
     objects.push_back(si_object);
     
     Downloader downloader;

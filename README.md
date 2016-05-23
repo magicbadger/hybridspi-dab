@@ -13,6 +13,13 @@ Building
 
 aclocal
 libtoolize
+autoreconf
 automake --add-missing
 configure
 make
+
+Running
+-------
+
+curl -s <url> | dabspiencoder
+cat SI.xml | dabspiencoder 

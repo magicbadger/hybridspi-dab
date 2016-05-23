@@ -15,11 +15,11 @@ MAINTAINERCLEANFILES = $(MAN_DOC) $(MAN_HTML)
 
 EXTRA_DIST = asciidoc.conf $(MAN_TXT)
 
-if INSTALL_MAN
+#if INSTALL_MAN
 dist_man_MANS = $(MAN_DOC)
-endif
+#endif
 
-if BUILD_DOC
+#if BUILD_DOC
 EXTRA_DIST += $(MAN_HTML)
 
 SUFFIXES=.html .txt .xml .3 .7
@@ -36,6 +36,6 @@ SUFFIXES=.html .txt .xml .3 .7
 	xmlto man $<
 .xml.7:
 	xmlto man $<
-endif
+#endif
 
 dist-hook : $(MAN_DOC) $(MAN_HTML)

@@ -85,17 +85,16 @@ int main(int argc, char* argv[])
 	vector<Segment> segments = segment_encoder.Encode(id.Next(), objects);
     DatagroupEncoder datagroup_encoder;
     vector<Datagroup> datagroups = datagroup_encoder.Encode(segments);
-    for(Datagroup datagroup : datagroups)
+    /*for(Datagroup datagroup : datagroups)
     {
         cout << datagroup.Encode();
+    }*/
+    PacketEncoder packet_encoder(1, 24);
+    vector<Packet> packets = packet_encoder.Encode(datagroups);
+	for(Packet packet : packets)
+	{
+	    cout << packet.Encode();
     }
-    // PacketEncoder packet_encoder(1, 96);
-    // vector<Packet> packets = packet_encoder.Encode(datagroups);
-	// for(Packet packet : packets)
-	// {
-	//     cout << packet.Encode();
-    // }
-    //cout << "done" << endl;
 
   return 0;
 }
